@@ -4,6 +4,8 @@ services:
     build: .
     volumes:
       - .:/app
+    expose:
+      - 5000
     command: yarn start
   nginx:
     image: nginx:latest
@@ -12,8 +14,8 @@ services:
     depends_on:
       - node-app
     ports:
-      - 4000:4000
-# networks:
-#   default:
-#     driver: bridge
-#     name: node-app
+      - 80:80
+networks:
+  default:
+    driver: bridge
+    name: node-app
